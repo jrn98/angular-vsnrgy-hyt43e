@@ -8,17 +8,24 @@ import { TopBarComponent } from "./top-bar/top-bar.component";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { ProductAlertsComponent } from "./product-alerts/product-alerts.component";
 import { ProductDetailsComponentComponent } from "./product-details-component/product-details-component.component";
+import { CartService } from "./cart.service";
+import { CartComponent } from "./cart/cart.component";
+import { HttpClientModule } from "@angular/common/http";
+import { ShippingComponent } from "./shipping/shipping.component";
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: "", component: ProductListComponent },
       {
         path: "products/:productId",
         component: ProductDetailsComponentComponent
-      }
+      },
+      { path: "cart", component: CartComponent },
+      { path: "shipping", component: ShippingComponent }
     ])
   ],
   declarations: [
@@ -26,9 +33,12 @@ import { ProductDetailsComponentComponent } from "./product-details-component/pr
     TopBarComponent,
     ProductListComponent,
     ProductAlertsComponent,
-    ProductDetailsComponentComponent
+    ProductDetailsComponentComponent,
+    CartComponent,
+    ShippingComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [CartService]
 })
 export class AppModule {}
 
